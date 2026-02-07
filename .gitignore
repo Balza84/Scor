@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+
+# GitHub/IDE config
+.github/
+.vscode/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# VSCode settings
+.vscode/
+
+# Output directories
+downloads/
+output/
+
+# Audio files
+*.mp3
+*.wav
+*.m4a
+*.flac
+*.aac
+*.ogg
+
+# Video files
+*.mp4
+*.webm
+*.mkv
+*.avi
+*.mov
+
+# Logs
+*.log
+
+# Temp files
+*-player-script.js
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Exceptions
+!README.md
+!.env.example
