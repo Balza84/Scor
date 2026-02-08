@@ -1,17 +1,20 @@
 # Media to Text 🎬➡️📝
 
-Applicazione Node.js per convertire audio e video in file di testo usando la trascrizione vocale con AI.
+> 🇬🇧 English | 🇮🇹 [Italiano](README.it.md)
 
-## Funzionalità
+A Node.js application to convert audio and video into text files using AI-powered speech transcription.
 
-- ✅ **YouTube**: Download e trascrizione di video, shorts e playlist
-- ✅ **File locali**: Trascrizione di file audio/video dal tuo PC o NAS
-- ✅ **URL diretti**: Trascrizione da link diretti a file media
-- ✅ **Multi-provider**: Supporto per Groq (gratuito) e OpenAI
-- ✅ **Video lunghi**: Divisione automatica per file grandi
-- ✅ **Multilingua**: Italiano di default, rileva automaticamente altre lingue
+## Features
 
-## Formati Supportati
+- ✅ **YouTube**: Download and transcribe videos, shorts, and playlists
+- ✅ **Local files**: Transcribe audio/video files from your PC or NAS
+- ✅ **Direct URLs**: Transcribe from direct links to media files
+- ✅ **Multi-provider**: Support for Groq (free) and OpenAI
+- ✅ **Long videos**: Automatic splitting for large files
+- ✅ **Multilingual**: Italian by default, automatically detects other languages
+- ✅ **Media archiving**: Option to download and store video and audio locally (configure `KEEP_VIDEO` and `KEEP_AUDIO` in `.env`)
+
+## Supported Formats
 
 | Audio | Video |
 |-------|-------|
@@ -22,137 +25,137 @@ Applicazione Node.js per convertire audio e video in file di testo usando la tra
 | `.flac` | `.mov` |
 | `.aac` | |
 
-## Prerequisiti
+## Prerequisites
 
-- **Node.js** v18 o superiore
-- **FFmpeg** (incluso automaticamente tramite ffmpeg-static)
-- **API Key** Groq (gratuito) oppure OpenAI
+- **Node.js** v18 or higher
+- **FFmpeg** (automatically included via ffmpeg-static)
+- **API Key** from Groq (free) or OpenAI
 
-## Installazione
+## Installation
 
-1. Clona o scarica questo repository
+1. Clone or download this repository
 
-2. Installa le dipendenze:
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-3. Configura l'API key:
+3. Configure your API key:
    ```bash
-   # Copia il file di esempio
+   # Copy the example file
    cp .env.example .env
    
-   # Modifica .env e inserisci la tua API key
-   # OPZIONE 1: Groq (GRATUITO - consigliato)
+   # Edit .env and add your API key
+   # OPTION 1: Groq (FREE - recommended)
    GROQ_API_KEY=gsk_...
    
-   # OPZIONE 2: OpenAI (a pagamento)
+   # OPTION 2: OpenAI (paid)
    # OPENAI_API_KEY=sk-...
    ```
 
-   💡 **Consiglio**: Usa [Groq](https://console.groq.com) - è gratuito e velocissimo!
+   💡 **Tip**: Use [Groq](https://console.groq.com) - it's free and super fast!
 
-### Configurazione Avanzata
+### Advanced Configuration
 
-Nel file `.env` puoi configurare anche:
+In the `.env` file you can also configure:
 
 ```bash
-# Mantieni i file audio dopo la trascrizione (default: false)
+# Keep audio files after transcription (default: false)
 KEEP_AUDIO=true
 
-# Mantieni i video YouTube scaricati (default: false)
+# Keep downloaded YouTube videos (default: false)
 KEEP_VIDEO=true
 
-# Percorsi personalizzati per l'archiviazione
+# Custom paths for storage
 VIDEO_PATH=C:\Media\Videos
 AUDIO_PATH=C:\Media\Audio
 TRANSCRIPTION_PATH=C:\Media\Transcriptions
 ```
 
-All'avvio, l'applicazione verifica che i percorsi esistano e siano accessibili. Se non esistono, vengono creati automaticamente.
+On startup, the application verifies that paths exist and are accessible. If they don't exist, they are created automatically.
 
-## Utilizzo
+## Usage
 
 ```bash
-npm start <SORGENTE>
+npm start <SOURCE>
 ```
 
-### Esempi
+### Examples
 
 ```bash
-# Video YouTube
+# YouTube video
 npm start https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 # YouTube Shorts
 npm start https://youtube.com/shorts/Mp4VE4nLXWc
 
-# URL corto
+# Short URL
 npm start https://youtu.be/dQw4w9WgXcQ
 
-# File locale
-npm start "C:\Video\intervista.mp4"
+# Local file
+npm start "C:\Videos\interview.mp4"
 
-# File da NAS
+# File from NAS
 npm start "\\nas\media\podcast.mp3"
 
-# URL diretto a file media
+# Direct URL to media file
 npm start https://example.com/audio.mp3
 ```
 
 ## Output
 
-Le trascrizioni vengono salvate nella cartella `output/` con il formato:
+Transcriptions are saved in the `output/` folder with the format:
 ```
 output/
-  └── Titolo_Media_2026-02-03T22-15-30.txt
+  └── Media_Title_2026-02-03T22-15-30.txt
 ```
 
-Ogni file contiene:
-- Metadati (titolo, autore/canale, durata)
-- Sorgente originale (URL o percorso file)
-- Data della trascrizione
-- Testo completo trascritto
+Each file contains:
+- Metadata (title, author/channel, duration)
+- Original source (URL or file path)
+- Transcription date
+- Complete transcribed text
 
-## Costi
+## Pricing
 
-| Provider | Costo | Note |
-|----------|-------|------|
-| **Groq** | Gratuito | Usa Whisper Large V3, molto veloce |
-| **OpenAI** | ~$0.006/minuto | ~$0.06 per 10 minuti |
+| Provider | Cost | Notes |
+|----------|------|-------|
+| **Groq** | Free | Uses Whisper Large V3, very fast |
+| **OpenAI** | ~$0.006/minute | ~$0.06 for 10 minutes |
 
-## Struttura Progetto
+## Project Structure
 
 ```
 media-to-text/
 ├── index.js              # Entry point
 ├── src/
-│   ├── transcriber.js    # Orchestrazione trascrizione
-│   ├── downloader.js     # Download audio/video (yt-dlp)
-│   ├── speechToText.js   # Integrazione Whisper (Groq/OpenAI)
-│   ├── paths.js          # Gestione percorsi e configurazione
-│   └── utils.js          # Utility varie
+│   ├── transcriber.js    # Transcription orchestration
+│   ├── downloader.js     # Audio/video download (yt-dlp)
+│   ├── speechToText.js   # Whisper integration (Groq/OpenAI)
+│   ├── paths.js          # Path management and configuration
+│   └── utils.js          # Various utilities
 ├── downloads/
-│   ├── audio/            # File audio (temporanei o archiviati)
-│   └── videos/           # File video (se KEEP_VIDEO=true)
-├── output/               # Trascrizioni salvate
-├── .env                  # Configurazione (API keys e percorsi)
+│   ├── audio/            # Audio files (temporary or archived)
+│   └── videos/           # Video files (if KEEP_VIDEO=true)
+├── output/               # Saved transcriptions
+├── .env                  # Configuration (API keys and paths)
 └── package.json
 ```
 
 ## Troubleshooting
 
-### Errore "Video unavailable"
-Il video potrebbe essere privato, rimosso o geo-bloccato nel tuo paese.
+### "Video unavailable" error
+The video might be private, removed, or geo-blocked in your country.
 
-### Errore "Rate limit" o "Quota exceeded"
-Hai superato i limiti dell'API. Con Groq questo è raro, con OpenAI potrebbe richiedere di aggiungere crediti.
+### "Rate limit" or "Quota exceeded" error
+You've exceeded API limits. With Groq this is rare; with OpenAI you may need to add credits.
 
-### Errore di connessione
-Verifica la tua connessione internet e che non ci siano firewall/proxy che bloccano le richieste.
+### Connection error
+Check your internet connection and ensure no firewall/proxy is blocking requests.
 
-### File troppo grande
-Per file molto lunghi (>2 ore), l'app divide automaticamente l'audio in parti da 10 minuti.
+### File too large
+For very long files (>2 hours), the app automatically splits audio into 10-minute chunks.
 
-## Licenza
+## License
 
 MIT
