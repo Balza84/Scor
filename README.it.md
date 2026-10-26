@@ -29,6 +29,7 @@ Applicazione Node.js per convertire audio e video in file di testo usando la tra
 
 - **Node.js** v18 o superiore
 - **FFmpeg** (incluso automaticamente tramite ffmpeg-static)
+- **FFprobe** (incluso automaticamente tramite ffprobe-static per dividere i file grandi)
 - **API Key** Groq (gratuito) oppure OpenAI
 
 ## Installazione

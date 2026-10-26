@@ -29,6 +29,7 @@ A Node.js application to convert audio and video into text files using AI-powere
 
 - **Node.js** v18 or higher
 - **FFmpeg** (automatically included via ffmpeg-static)
+- **FFprobe** (automatically included via ffprobe-static for splitting large files)
 - **API Key** from Groq (free) or OpenAI
 
 ## Installation

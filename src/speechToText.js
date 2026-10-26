@@ -171,8 +171,10 @@ async function transcribeLargeAudio(audioPath) {
 async function getAudioDuration(audioPath) {
   const ffmpeg = (await import("fluent-ffmpeg")).default;
   const ffmpegStatic = (await import("ffmpeg-static")).default;
+  const ffprobeStatic = (await import("ffprobe-static")).default;
 
   ffmpeg.setFfmpegPath(ffmpegStatic);
+  ffmpeg.setFfprobePath(ffprobeStatic.path);
 
   return new Promise((resolve, reject) => {
     ffmpeg.ffprobe(audioPath, (err, metadata) => {
